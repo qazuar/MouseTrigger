@@ -34,9 +34,9 @@ public class Trigger implements Runnable, Serializable {
                     tmpColor = robot.getPixelColor(tmpPoint.x, tmpPoint.y);
 
                     if (!tmpColor.equals(svdColor)) {
-                        //robot.mousePress(InputEvent.BUTTON1_MASK);
-                        //robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                        System.out.println("BUTTON1");
+                        robot.mousePress(InputEvent.BUTTON1_MASK);
+                        robot.mouseRelease(InputEvent.BUTTON1_MASK);
+                        //System.out.println("BUTTON1");
                         svdColor = tmpColor;
                         Thread.sleep(WAIT_TIME);
                     }
@@ -47,6 +47,7 @@ public class Trigger implements Runnable, Serializable {
 
                 count++;
 
+                // This is just to determine how efficiency
                 if (count == 300) {
                     System.out.println("300 checks done in " + (System.currentTimeMillis() - start) + "ms");
                 }
