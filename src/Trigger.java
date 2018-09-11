@@ -25,6 +25,7 @@ public class Trigger implements Runnable, Serializable {
     public void run() {
         try {
             int count = 0;
+            int registers = 0;
             long start = System.currentTimeMillis();
 
             robot = new Robot();
@@ -40,7 +41,8 @@ public class Trigger implements Runnable, Serializable {
                     if (!tmpColor.equals(svdColor)) {
                         robot.mousePress(InputEvent.BUTTON1_MASK);
                         robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                        System.out.println(tf.format(LocalDateTime.now()) + ": Registered trigger");
+                        registers++;
+                        System.out.println(tf.format(LocalDateTime.now()) + ": Mousetrigger #" + registers);
                         svdColor = tmpColor;
                         Thread.sleep(WAIT_TIME);
                     }
