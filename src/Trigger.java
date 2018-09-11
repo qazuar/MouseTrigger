@@ -42,7 +42,7 @@ public class Trigger implements Runnable, Serializable {
                         robot.mousePress(InputEvent.BUTTON1_MASK);
                         robot.mouseRelease(InputEvent.BUTTON1_MASK);
                         registers++;
-                        System.out.println(tf.format(LocalDateTime.now()) + ": Mousetrigger #" + registers);
+                        System.out.println(tf.format(LocalDateTime.now()) + ": Mousetrigger at x: " + tmpPoint.x + " y: " + tmpPoint.y + " (" + registers +")");
                         svdColor = tmpColor;
                         Thread.sleep(WAIT_TIME);
                     }
