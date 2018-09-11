@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Trigger implements Runnable, Serializable {
 
@@ -16,6 +18,8 @@ public class Trigger implements Runnable, Serializable {
 
     private Color svdColor;
     private Color tmpColor;
+
+    DateTimeFormatter tf = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     @Override
     public void run() {
@@ -36,7 +40,7 @@ public class Trigger implements Runnable, Serializable {
                     if (!tmpColor.equals(svdColor)) {
                         robot.mousePress(InputEvent.BUTTON1_MASK);
                         robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                        //System.out.println("BUTTON1");
+                        System.out.println(tf.format(LocalDateTime.now()) + ": Registered trigger");
                         svdColor = tmpColor;
                         Thread.sleep(WAIT_TIME);
                     }
@@ -47,7 +51,7 @@ public class Trigger implements Runnable, Serializable {
 
                 count++;
 
-                // This is just to determine how efficiency
+                // This is just to determine efficiency
                 if (count == 300) {
                     System.out.println("300 checks done in " + (System.currentTimeMillis() - start) + "ms");
                 }
