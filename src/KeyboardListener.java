@@ -69,6 +69,7 @@ public class KeyboardListener implements NativeKeyListener {
     public void disable() {
         try {
             GlobalScreen.unregisterNativeHook();
+            this.colorTrigger.stop();
         } catch (NativeHookException ex) {
             ex.printStackTrace();
         }

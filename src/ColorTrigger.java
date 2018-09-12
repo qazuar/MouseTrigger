@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.InputEvent;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -38,6 +39,8 @@ public class ColorTrigger implements Runnable, Serializable {
 
                     if (!tmpColor.equals(svdColor)) {
                         System.out.println("FIRE");
+                        robot.mousePress(InputEvent.BUTTON1_MASK);
+                        robot.mouseRelease(InputEvent.BUTTON1_MASK);
                         activate();
                     }
                 }
@@ -55,7 +58,7 @@ public class ColorTrigger implements Runnable, Serializable {
             point = MouseInfo.getPointerInfo().getLocation();
             svdColor = robot.getPixelColor(point.x, point.y);
             this.TRIGGER_ACTIVE = true;
-            System.out.println(tf.format(LocalDateTime.now()) + ": Activated on color: " + svdColor.toString());
+            System.out.println(tf.format(LocalDateTime.now()) + ": Activated on color: [" + svdColor.getRed() + ", " + svdColor.getGreen() + ", " + svdColor.getBlue() + "]");
         } else {
             svdColor = null;
             this.TRIGGER_ACTIVE = false;
